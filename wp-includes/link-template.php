@@ -4384,3 +4384,5 @@ function get_the_privacy_policy_link( $before = '', $after = '' ) {
 
 	return '';
 }
+
+
