@@ -7,21 +7,21 @@
     <meta name="keywords" content="Bootstrap, Landing page, Template, Business, Service">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <meta name="author" content="Grayrids">
-    <title>Slick - Bootstrap 4 Template</title>
+    <title>Cooperativas Escolares</title>
     <!--====== Favicon Icon ======-->
-    <link rel="shortcut icon" href="<?= get_template_directory_uri(); ?>/img/2.png" type="image/png">
+    <link rel="shortcut icon" href="<?= get_theme_root_uri(); ?>/localhost/img/2.png" type="image/png">
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="<?= get_template_directory_uri(); ?>/css/bootstrap.min.css">
-    <link rel="stylesheet" href="<?= get_template_directory_uri(); ?>/css/animate.css">
-    <link rel="stylesheet" href="<?= get_template_directory_uri(); ?>/css/LineIcons.css">
-    <link rel="stylesheet" href="<?= get_template_directory_uri(); ?>/css/owl.carousel.css">
-    <link rel="stylesheet" href="<?= get_template_directory_uri(); ?>/css/owl.theme.css">
-    <link rel="stylesheet" href="<?= get_template_directory_uri(); ?>/css/magnific-popup.css">
-    <link rel="stylesheet" href="<?= get_template_directory_uri(); ?>/css/nivo-lightbox.css">
-    <link rel="stylesheet" href="<?= get_template_directory_uri(); ?>/css/main.css">    
-    <link rel="stylesheet" href="<?= get_template_directory_uri(); ?>/css/responsive.css">
-    <link rel="stylesheet" href="<?= get_template_directory_uri(); ?>/functions.php">
-
+    <link rel="stylesheet" href="<?= get_theme_root_uri(); ?>/localhost/css/bootstrap.min.css">
+    <link rel="stylesheet" href="<?= get_theme_root_uri(); ?>/localhost/css/animate.css">
+    <link rel="stylesheet" href="<?= get_theme_root_uri(); ?>/localhost/css/LineIcons.css">
+    <link rel="stylesheet" href="<?= get_theme_root_uri(); ?>/localhost/css/owl.carousel.css">
+    <link rel="stylesheet" href="<?= get_theme_root_uri(); ?>/localhost/css/owl.theme.css">
+    <link rel="stylesheet" href="<?= get_theme_root_uri(); ?>/localhost/css/magnific-popup.css">
+    <link rel="stylesheet" href="<?= get_theme_root_uri(); ?>/localhost/css/nivo-lightbox.css">
+    <link rel="stylesheet" href="<?= get_theme_root_uri(); ?>/localhost/css/main.css">    
+    <link rel="stylesheet" href="<?= get_theme_root_uri(); ?>/localhost/css/responsive.css">
+    <link rel="stylesheet" href="<?= get_theme_root_uri(); ?>/localhost/functions.php">
+    <script src="https://kit.fontawesome.com/5317d26dd3.js"></script>
   </head>
   
   <body>
@@ -41,7 +41,7 @@
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav mr-auto w-100 justify-content-end">
               <li class="nav-item">
-                <a class="nav-link page-scroll" href="#home">Home</a>
+                <a class="nav-link page-scroll" href="#home">Início</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link page-scroll" href="#services">Cooperativas Escolares</a>
@@ -62,7 +62,7 @@
                 <a class="nav-link page-scroll" href="#blog">Blog</a>
               </li>  --> 
               <li class="nav-item">
-                <a class="nav-link page-scroll" href="#contact">Contact</a>
+                <a class="nav-link page-scroll" href="#contact">Contato</a>
               </li> 
               <!-- <li class="nav-item">
                 <a class="btn btn-singin" href="#">Download</a>
@@ -70,13 +70,26 @@
             </ul>
           </div>
         </div>
-      </nav>  
-      <div class="container">      
-        <div class="row space-100">
+      </nav>
+      <?php
+      $params = array(
+	        'post_type'     => 'banner',
+	        'posts_per_page' => -1
+	    );
+
+	    $banner = new WP_Query($params);
+      ?>
+      <div class="container">
+      <?php
+			if($banner->have_posts()){
+				while($banner->have_posts()){
+					$banner->the_post();
+		?>
+		<div class="row space-100">
           <div class="col-lg-6 col-md-12 col-xs-12">
             <div class="contents">
-              <h2 class="head-title">Handcrafted Web Template <br>For Business and Startups</h2>
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab <br>dolores ea fugiat nesciunt quisquam.</p>
+              <h2 class="head-title"><?= get_the_title(); ?></h2>
+              <p><?= get_the_content(); ?></p>
               <div class="header-button">
                 <a href="#" class="btn btn-border-filled">Get Started</a>
                 <a href="#contact" class="btn btn-border page-scroll">Contact Us</a>
@@ -85,10 +98,15 @@
           </div>
           <div class="col-lg-6 col-md-12 col-xs-12 p-0">
             <div class="intro-img">
-              <img src="<?= get_template_directory_uri(); ?>/img/intro.png" alt="">
+              <img src="<?= get('imagem'); ?>" alt="">
             </div>            
           </div>
         </div> 
+		<?php
+		}
+			wp_reset_query();
+		}
+		?>      
       </div>            
     </header>
     <!-- Header Section End --> 
@@ -275,7 +293,7 @@
             <div class="row">
               <div class="col-md-12">
                 <div class="site-info text-center">
-                  <p>Crafted by <a href="http://uideck.com" rel="nofollow">UIdeck</a></p>
+                  <p>Copyright © <?= date('Y'); ?></p>
                 </div>              
                 
               </div>
@@ -304,16 +322,16 @@
     <!-- End Preloader -->
 
     <!-- jQuery first, then Tether, then Bootstrap JS. -->
-    <script src="<?= get_template_directory_uri(); ?>/js/jquery-min.js"></script>
-    <script src="<?= get_template_directory_uri(); ?>/js/popper.min.js"></script>
-    <script src="<?= get_template_directory_uri(); ?>/js/bootstrap.min.js"></script>
-    <script src="<?= get_template_directory_uri(); ?>/js/owl.carousel.js"></script>      
-    <script src="<?= get_template_directory_uri(); ?>/js/jquery.nav.js"></script>    
-    <script src="<?= get_template_directory_uri(); ?>/js/scrolling-nav.js"></script>    
-    <script src="<?= get_template_directory_uri(); ?>/js/jquery.easing.min.js"></script>     
-    <script src="<?= get_template_directory_uri(); ?>/js/nivo-lightbox.js"></script>     
-    <script src="<?= get_template_directory_uri(); ?>/js/jquery.magnific-popup.min.js"></script>      
-    <script src="<?= get_template_directory_uri(); ?>/js/main.js"></script>
-    
+    <script src="<?= get_theme_root_uri(); ?>/localhost/js/jquery-min.js"></script>
+    <script src="<?= get_theme_root_uri(); ?>/localhost/js/popper.min.js"></script>
+    <script src="<?= get_theme_root_uri(); ?>/localhost/js/bootstrap.min.js"></script>
+    <script src="<?= get_theme_root_uri(); ?>/localhost/js/owl.carousel.js"></script>      
+    <script src="<?= get_theme_root_uri(); ?>/localhost/js/jquery.nav.js"></script>    
+    <script src="<?= get_theme_root_uri(); ?>/localhost/js/scrolling-nav.js"></script>    
+    <script src="<?= get_theme_root_uri(); ?>/localhost/js/jquery.easing.min.js"></script>     
+    <script src="<?= get_theme_root_uri(); ?>/localhost/js/nivo-lightbox.js"></script>     
+    <script src="<?= get_theme_root_uri(); ?>/localhost/js/jquery.magnific-popup.min.js"></script>      
+    <script src="<?= get_theme_root_uri(); ?>/localhost/js/main.js"></script>
+    <script src="<?= get_theme_root_uri(); ?>/localhost/js/default.js"></script>
   </body>
 </html>

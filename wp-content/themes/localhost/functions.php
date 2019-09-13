@@ -37,7 +37,8 @@ function make_list_shortcode()
     -ms-flex-wrap: wrap;
     flex-wrap: wrap;
     margin-right: -15px;
-    margin-left: -15px;">';
+    margin-left: -15px;
+    justify-content: center;">';
         foreach($subsites as $subsite)
             {
             $subsite_id = $subsite->blog_id;
@@ -54,11 +55,11 @@ function make_list_shortcode()
             // Added the image tag and src path
             if ($subsite_domain != 'localhost') {
             	$html.= '
-            <div class="col-lg-4 col-md-6 col-xs-12">
+            <div class="col-lg-4 col-md-6 col-xs-12" style="margin-bottom: 28px;">
             <a href="' . $subsite_link . '">
 	            <div class="services-item text-center">
 	              <div class="icon">
-	                <i class="lni-cog"></i>
+	                <i class="fa fa-school"></i>
 	              </div>
 	              <h4>' . $subsite_name . '</h4>
 	              <p>Share processes and data secure lona need to know basis Our team assured your web site is always safe.</p>
