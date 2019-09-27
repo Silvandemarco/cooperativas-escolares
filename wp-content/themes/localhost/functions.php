@@ -53,7 +53,7 @@ function make_list_shortcode()
             $logo = wp_get_attachment_image_src( $custom_logo_id , 'full' );
 
             // Added the image tag and src path
-            if ($subsite_domain != 'localhost') {
+            if ($subsite_name != 'Cooperativas Escolares') {
             	$html.= '
             <div class="col-lg-4 col-md-6 col-xs-12" style="margin-bottom: 28px;">
             <a href="' . $subsite_link . '">
