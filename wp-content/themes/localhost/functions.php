@@ -77,4 +77,65 @@ function make_list_shortcode()
     }
 
 add_shortcode('list_sites', 'make_list_shortcode');
+
+function ajax_call() {
+    wp_localize_script( 'function', 'my_ajax_script', array( 'ajaxurl' => admin_url( 'admin-ajax.php' ) ) );
+}
+
+add_action('template_redirect', 'ajax_call');
+
+function get_site_value($value='', $metavalue=false){
+    $obj = get_posts('post_type=informacao');
+    if ($metavalue) {
+        return get_post_meta( $obj[0]->ID, $value, true );
+    } else {
+        return $obj[0]->$value;
+    }
+}
+
+function openFile ($file) {
+    $fp = fopen($file,"r"); 
+    return fread($fp,filesize($file));
+}
+
+function sendMessage($template, $subject, $to=NULL, $reply_to){
+    $message = openFile(TEMPLATEPATH . "/emails/contato.html");
+
+    foreach($_POST as $key=>$value){
+        if($key == "setor") {
+            $email_id = $value;
+            $email_send = get_the_title($email_id);
+            $message = str_replace("<".$key.">", nl2br($email_send), $message);
+        } else {
+            if(is_array($value)){
+                $each_vals = '';
+                foreach ($value as $k => $v) {
+                    $each_vals .= $v . ", ";
+                }
+                $message = str_replace("<".$key.">", nl2br($each_vals), $message);
+            } else {
+                $message = str_replace("<".$key.">", nl2br($value), $message);
+            }
+        }
+    }
+    $message = str_replace("<link>", get_template_directory_uri(), $message);
+    $message = str_replace("<url_site>", get_site_url(), $message);
+
+    if(is_null($to)){
+        $to = get_site_value('email');
+    }
+
+    $headers = array(
+        'Content-type: text/html',
+        'Reply-To: '.$reply_to
+    );
+
+    if(wp_mail($to, $subject, $message, $headers)){
+        $message = 'true';
+    } else {
+        $message = 'false';
+    }
+    echo $message;
+    die();
+}
 ?>

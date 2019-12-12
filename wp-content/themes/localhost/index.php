@@ -21,7 +21,9 @@
     <link rel="stylesheet" href="<?= get_theme_root_uri(); ?>/localhost/css/main.css">    
     <link rel="stylesheet" href="<?= get_theme_root_uri(); ?>/localhost/css/responsive.css">
     <link rel="stylesheet" href="<?= get_theme_root_uri(); ?>/localhost/functions.php">
+    <link rel="stylesheet" href="<?= get_theme_root_uri(); ?>/localhost/css/slick.scss">
     <script src="https://kit.fontawesome.com/5317d26dd3.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Nunito:300,400,600,700,800,900&display=swap" rel="stylesheet">
   </head>
   
   <body>
@@ -29,8 +31,8 @@
     <!-- Header Section Start -->
     <header id="home" class="hero-area">    
       <div class="overlay">
-        <span></span>
-        <span></span>
+        <!-- <span></span>
+        <span></span> -->
       </div>
       <nav class="navbar navbar-expand-md bg-inverse fixed-top scrolling-navbar">
         <div class="container">
@@ -42,6 +44,9 @@
             <ul class="navbar-nav mr-auto w-100 justify-content-end">
               <li class="nav-item">
                 <a class="nav-link page-scroll" href="#home">Início</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link page-scroll" href="#cooperativas-escolares">O que são as Cooperativas Escolares</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link page-scroll" href="#services">Cooperativas Escolares</a>
@@ -79,36 +84,15 @@
 
 	    $banner = new WP_Query($params);
       ?>
-      <div class="container">
+      <div class="list-banners-home">
       <?php
 			if($banner->have_posts()){
 				while($banner->have_posts()){
 					$banner->the_post();
 		?>
-		<div class="row space-100">
-          <div class="col-lg-6 col-md-12 col-xs-12">
-            <div class="contents">
-              <h2 class="head-title"><?= get_the_title(); ?></h2>
-              <p><?= get_the_content(); ?></p>
-              <div class="header-button">
-                <?php
-                  $botoes = get_group('botao', get_the_ID());
-                  foreach ($botoes as $key => $value) {
-                    $cor_texto = $value['botao_cor_do_texto'][1];
-                    $cor_fundo = $value['botao_cor_do_fundo'][1];
-                ?>
-                    <a <?php if ($value['botao_abre_em_nova_aba'][1]) { ?>target="_blank"<?php } ?> style="color: <?= $cor_texto; ?>;background-color: <?= $cor_fundo; ?>;border-color: <?= $cor_fundo ?>;" href="<?= $value['botao_link'][1]; ?>" class="btn btn-border-filled btn-color-panel"><?= $value['botao_texto'][1]; ?></a>
-                  <?php }
-                ?>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-6 col-md-12 col-xs-12 p-0">
-            <div class="intro-img">
-              <img src="<?= get('imagem'); ?>" alt="">
-            </div>            
-          </div>
-        </div> 
+		<div class="banners">
+      <a href="<?= get('link_botao'); ?>"><div class="img" style="background-image: url('<?= get('imagem'); ?>');"></div></a>
+    </div>
 		<?php
 		}
 			wp_reset_query();
@@ -118,6 +102,30 @@
     </header>
     <!-- Header Section End --> 
 
+    <?php
+      $params_o_que_sao_coop = array(
+          'post_type'     => 'o_que_sao_coop',
+          'posts_per_page' => 1
+      );
+
+      $o_que_sao_coop = new WP_Query($params_o_que_sao_coop);
+      ?>
+    <section id="cooperativas-escolares" style="margin-top: 50px;">
+      <div class="wrapper-cooperativas-escolares container">
+        <?php
+          if($o_que_sao_coop->have_posts()){
+            while($o_que_sao_coop->have_posts()){
+              $o_que_sao_coop->the_post();
+        ?>
+        <h1><?= get_the_title(); ?></h1>
+        <div class="content-oq-sao-coop"><?= the_content(); ?></div>
+        <?php
+        }
+          wp_reset_query();
+        }
+        ?>
+      </div>
+    </section>
 
     <!-- Services Section Start -->
     <section id="services" class="section">
@@ -153,38 +161,48 @@
         </div>
         <!-- End Row -->
         <!-- Start Row -->
+
+        <?php
+          if(!empty($_POST['email'])){
+            if(sendMessage('contato', 'Formulário de contato', 'gabriel.h.bernardi@gmail.com', $_POST['email'])){
+              die('true');
+            } else {
+              die('false');
+            }
+          }
+        ?>
         <div class="row">
           <!-- Start Col -->
           <div class="col-lg-6 col-md-12" style="max-width: 100%;flex: 0 0 100%;">
-          <form id="contactForm">
+          <form id="contactForm" method="post" action="">
             <div class="row">
               <div class="col-md-6">
                 <div class="form-group">
-                  <input type="text" class="form-control" id="name" name="name" placeholder="Nome" required data-error="Digite seu nome">
+                  <input type="text" class="form-control" id="name" name="name" placeholder="Nome">
                   <div class="help-block with-errors"></div>
                 </div>                                 
               </div>
               <div class="col-md-6">
                 <div class="form-group">
-                  <input type="text" placeholder="Telefone" id="budget" class="form-control" name="budget" required data-error="Digite seu telefone">
+                  <input type="text" placeholder="Telefone" id="budget" class="form-control" name="budget">
                   <div class="help-block with-errors"></div>
                 </div> 
               </div>
               <div class="col-md-6">
                 <div class="form-group">
-                  <input type="text" class="form-control" id="email" name="email" placeholder="E-mail" required data-error="Digite seu e-mail">
+                  <input type="email" class="form-control" id="email" name="email" placeholder="E-mail">
                   <div class="help-block with-errors"></div>
                 </div>                                 
               </div>
               <div class="col-md-6">
                 <div class="form-group">
-                  <input type="text" placeholder="Assunto" id="msg_subject" class="form-control" name="msg_subject" required data-error="Digite o assunto">
+                  <input type="text" placeholder="Assunto" id="msg_subject" class="form-control" name="msg_subject">
                   <div class="help-block with-errors"></div>
                 </div> 
               </div>
               <div class="col-md-12">
                 <div class="form-group"> 
-                  <textarea class="form-control" id="message"  name="message" placeholder="Mensagem" rows="4" data-error="Digite sua mensagem" required></textarea>
+                  <textarea class="form-control" id="message"  name="message" placeholder="Mensagem" rows="4"></textarea>
                   <div class="help-block with-errors"></div>
                 </div>
                 <div class="submit-button">
@@ -192,6 +210,7 @@
                   <div id="msgSubmit" class="h3 hidden"></div> 
                   <div class="clearfix"></div> 
                 </div>
+                <div class="msgs-contact"></div>
               </div>
             </div>            
           </form>
@@ -268,7 +287,10 @@
     <script src="<?= get_theme_root_uri(); ?>/localhost/js/scrolling-nav.js"></script>    
     <script src="<?= get_theme_root_uri(); ?>/localhost/js/jquery.easing.min.js"></script>     
     <script src="<?= get_theme_root_uri(); ?>/localhost/js/nivo-lightbox.js"></script>     
-    <script src="<?= get_theme_root_uri(); ?>/localhost/js/jquery.magnific-popup.min.js"></script>      
+    <script src="<?= get_theme_root_uri(); ?>/localhost/js/jquery.magnific-popup.min.js"></script>
+    <script src="<?= get_theme_root_uri(); ?>/localhost/js/jquery.validate.min.js"></script>  
+    <script src="<?= get_theme_root_uri(); ?>/localhost/js/additional-methods.min.js"></script>    
+    <script src="<?= get_theme_root_uri(); ?>/localhost/js/slick.min.js"></script>
     <script src="<?= get_theme_root_uri(); ?>/localhost/js/main.js"></script>
     <script src="<?= get_theme_root_uri(); ?>/localhost/js/default.js"></script>
   </body>

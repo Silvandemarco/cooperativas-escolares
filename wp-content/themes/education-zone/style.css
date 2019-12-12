@@ -49,7 +49,9 @@ Nicolas Gallagher and Jonathan Neal http://necolas.github.com/normalize.css/
 /*--------------------------------------------------------------
 # Normalize
 --------------------------------------------------------------*/
-
+.site-header.header-two .form-section .example form {
+    background: #3fa110 !important;
+}
 html {
     font-family: sans-serif;
     -webkit-text-size-adjust: 100%;
@@ -596,7 +598,7 @@ a:active {
     top: 100%;
     left: -999em;
     z-index: 99999;
-    background: #3b9ad7;
+    background: #3fa110 !important;
 }
 
 .main-navigation ul ul ul {
@@ -1058,7 +1060,7 @@ body.custom-background .site {
 
 .site-header .header-top {
     padding: 4px 0 0;
-    background: #3b9ad7;
+    background: #3fa110 !important;
 }
 
 .site-header .header-top .secondary-nav {
@@ -1073,7 +1075,7 @@ body.custom-background .site {
     right: 0;
     margin: 0;
     padding: 0;
-    background: #3b9ad7;
+    background: #3fa110 !important;
     width: 200px;
     z-index: 10;
     border-top: 1px solid rgba(255, 255, 255, 0.4);
@@ -1097,7 +1099,7 @@ body.custom-background .site {
     top: 0;
     right: -999em;
     z-index: 99999;
-    background: #3b9ad7;
+    background: #3fa110 !important;
 }
 
 .site-header .header-top .secondary-nav ul li:hover>ul,
@@ -1157,7 +1159,7 @@ body.custom-background .site {
 }
 
 .site-header .header-bottom {
-    background: #3b9ad7;
+    background: #3fa110 !important;
 }
 
 .site-header .header-top .top-links span a:hover {
@@ -1299,7 +1301,7 @@ body.custom-background .site {
     font-size: 18px;
     line-height: 22px;
     color: #fff;
-    background: #3b9ad7;
+    background: #3fa110 !important;
     font-weight: 900;
     padding: 17px 36px;
     display: inline-block;
@@ -1414,7 +1416,7 @@ body.custom-background .site {
     display: block;
     font-size: 40px;
     line-height: 44px;
-    color: #3b9ad7;
+    color: #3fa110 !important;
     font-weight: 700;
     margin-bottom: 10px;
 }
@@ -1527,7 +1529,7 @@ body.custom-background .site {
 
 .featured-courses ul li .image-holder .description .learn-more {
     display: inline-block;
-    background: #3b9ad7;
+    background: #3fa110 !important;
     font-size: 14px;
     line-height: 17px;
     font-weight: 900;
@@ -1592,8 +1594,8 @@ body.custom-background .site {
 }
 
 .theme .theme-description .apply:hover {
-    background: #3b9ad7;
-    border: 1px solid #3b9ad7;
+    background: #3fa110 !important;
+    border: 1px solid #3fa110 !important;
 }
 
 .theme .theme-description .apply:focus{
@@ -1867,7 +1869,7 @@ ul.owl-carousel {
 }
 
 .latest-events .learn-more {
-    background: #3b9ad7;
+    background: #3fa110 !important;
     color: #fff;
     text-transform: uppercase;
     font-weight: 900;
@@ -1970,7 +1972,7 @@ ul.owl-carousel {
 }
 
 .search-section {
-    background: #3b9ad7;
+    background: #3fa110 !important;
     font-size: 22px;
     line-height: 25px;
     color: #ffffff;
@@ -2038,7 +2040,7 @@ ul.owl-carousel {
     border-radius: 0;
     font-size: 16px;
     line-height: 20px;
-    color: #3b9ad7;
+    color: #3fa110 !important;
     font-weight: 600;
     text-align: center;
     padding: 0;
@@ -2145,7 +2147,7 @@ ul.owl-carousel {
 }
 
 #primary {
-    width: 66.67%;
+    width: 100%;
     float: left;
     padding: 0 15px;
     -webkit-box-sizing: border-box;
@@ -2254,7 +2256,7 @@ ul.owl-carousel {
 
 #primary .read-more {
     display: inline-block;
-    background: #3b9ad7;
+    background: #3fa110 !important;
     text-transform: uppercase;
     font-size: 14px;
     line-height: 17px;
@@ -2370,7 +2372,7 @@ ul.owl-carousel {
     height: 100%;
     box-shadow: none;
     border-radius: 0;
-    background: url(images/search-icon.png) no-repeat 48% 53% #3b9ad7;
+    background: url(images/search-icon.png) no-repeat 48% 53% #3fa110 !important;
     text-indent: 100%;
     font-size: 0;
 }
@@ -2626,8 +2628,8 @@ ul.owl-carousel {
 
 .navigation.pagination .page-numbers.current,
 .navigation.pagination .page-numbers:hover {
-    border: 2px solid #3b9ad7;
-    color: #3b9ad7;
+    border: 2px solid #3fa110 !important;
+    color: #3fa110 !important;
 }
 
 .site-footer .widget ul li .post .entry-title a {
@@ -2713,12 +2715,12 @@ ul.owl-carousel {
 }
 
 .tags a:hover {
-    color: #3b9ad7;
+    color: #3fa110 !important;
 }
 
 .tags svg {
     margin-right: 10px;
-    color: #3b9ad7;
+    color: #3fa110 !important;
     font-size: 18px;
     line-height: 22px;
 }
@@ -2895,7 +2897,7 @@ ul.owl-carousel {
 }
 
 .reply a:hover {
-    color: #3b9ad7;
+    color: #3fa110 !important;
 }
 
 .comment-meta:after {
@@ -2977,13 +2979,14 @@ ul.owl-carousel {
     line-height: 30px;
     font-weight: 700;
     padding: 12px 60px;
-    background: #3b9ad7;
+    background: #3fa110;
     display: block;
     width: 100%;
+    transition: 450ms all ease;
 }
 
 .comment-form form input[type="submit"]:hover {
-    background: #27668e;
+    background: #378014;
 }
 
 .comments-area.form .comment-reply-title {
@@ -3255,7 +3258,7 @@ ul.owl-carousel {
 .single-post .site-content .entry-content form input[type="submit"] {
     box-shadow: none;
     color: #fff;
-    background: #3b9ad7;
+    background: #3fa110 !important;
     padding: 10px 22px;
     font-size: 17px;
     border-radius: 0;
@@ -3310,7 +3313,7 @@ ul.owl-carousel {
 }
 
 .error404 .not-found span {
-    color: #3b9ad7;
+    color: #3fa110 !important;
     font-size: 124px;
     line-height: 136px;
     font-weight: 700;
@@ -3359,7 +3362,7 @@ ul.owl-carousel {
 }
 
 .error404 .homepage {
-    background: #3b9ad7;
+    background: #3fa110 !important;
     font-size: 14px;
     line-height: 17px;
     color: #fff;
